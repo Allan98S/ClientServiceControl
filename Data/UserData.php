@@ -28,7 +28,7 @@ function verifyLogin($mail,$password){
     $statement->execute(array());
     $result=$statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
- 
+    // check if hatch passsword  es equal to password inserted by the user
     foreach($result as $row){
         if(password_verify($password,$row['user_password'])){
         $user=new User();
@@ -81,7 +81,7 @@ function getServicesOfUser($idUser){
 
 }
 function registerUser($user){
-    
+     //First insert the company of the user and then insert the user, because of foreign key reference
     $query1 = 'Insert into  company   SET company_name = :company_name, 
     company_address = :company_address ';
     $stmt = $this->conection_db->prepare($query1);
