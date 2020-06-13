@@ -5,7 +5,8 @@ require_once("../Domain/Service.php");
 require_once("../Domain/Company.php");
 require_once("../Domain/ServiceType.php");
 session_start();
-//require_once("../controladores/verUsuariosController.php");
+// Function that check if  a Service is expired compared to actual date, and then send a mail.
+
 if(!isset($_SESSION["user"])){//si session  es nullo
   header("Location:../index.php");
 }else{
@@ -35,16 +36,10 @@ $receptor=$_SESSION["user"]-> getUserMail();
 $issue='Recordatorio de servicio próximo a vencer';
 $headers="MIME-Version: 1.0\r\n";
 $headers.="Content-type: text/html; charset=iso-8859-1\r\n";
-$headers.="From: Administrador sistema < ajosue19@gmail.com >\r\n";
+$headers.="From: Administrador sistema < ajosuesosa@hotmail.com >\r\n";
 $isSent=mail($receptor,$issue,$emailBody,$headers);
 
-if($isSent){
-    echo "Mensaje enviado con exito";
-}else{
-    "Ha habido un error";
-}
-  
-  }
+
   
 
 ?>
